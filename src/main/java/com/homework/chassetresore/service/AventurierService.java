@@ -31,7 +31,7 @@ public class AventurierService {
      * @param instruction
      * @return
      */
-    public Aventurier appliquerInstruction(Aventurier aventurier, Instruction instruction) {
+    private Aventurier appliquerInstruction(Aventurier aventurier, Instruction instruction) {
         switch (instruction) {
             case AVANCER:
                 return avancerAvecObstacles(aventurier, carte)

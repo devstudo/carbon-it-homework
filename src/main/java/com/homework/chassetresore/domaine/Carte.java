@@ -1,5 +1,6 @@
 package com.homework.chassetresore.domaine;
 
+
 import lombok.Data;
 
 import java.util.List;
