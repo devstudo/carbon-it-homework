@@ -7,12 +7,16 @@ public class Tresor extends Plaine {
 
     public Tresor(Point point, int nbrDeTresors) {
         super(point, "T");
-        this.nbrDeTresors= nbrDeTresors;
+        this.nbrDeTresors = nbrDeTresors;
     }
 
     public Tresor decrement() {
         this.nbrDeTresors--;
         return this;
+    }
+
+    public int getNbrDeTresors() {
+        return nbrDeTresors;
     }
 
     @Override
@@ -31,8 +35,6 @@ public class Tresor extends Plaine {
 
     @Override
     public String toString() {
-        return "Tresor{" +
-               "nbrDeTresors=" + nbrDeTresors +
-               "} " + super.toString();
+        return "\n" + this.getTag() + " - " + this.getPoint().getX() + " - " + this.getPoint().getY() + " - " + this.getNbrDeTresors();
     }
 }

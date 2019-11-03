@@ -1,7 +1,10 @@
 package com.homework.chassetresore.domaine;
 
+import com.homework.chassetresore.exception.ItemdeCarteNonConformeException;
+
+import java.util.Arrays;
+
 public enum  CarteItem {
-    CARTE("C"),
     MONTAGNE("M"),
     TRESORE("T"),
     AVENTURIER("A");
@@ -9,6 +12,18 @@ public enum  CarteItem {
     private final String item;
 
     CarteItem(String item) {
-        this.item = item;
+      this.item = item;
     }
+
+    public String getItem() {
+        return item;
+    }
+
+    public static CarteItem valueOfString(String instruction) {
+        return Arrays.stream(values())
+                .filter(elem -> elem.getItem().equals(instruction))
+                .findFirst()
+                .orElseThrow(() -> new ItemdeCarteNonConformeException());
+    }
+
 }

@@ -1,25 +1,34 @@
 package com.homework.chassetresore.domaine;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Aventurier extends Plaine {
     private Direction direction;
+    private final List<Instruction> instructionList;
     private String name;
     private int tresorsRamases;
+
 
     public Aventurier(Point point, Direction direction, String name) {
         super(point, "A");
         this.direction = direction;
+        this.instructionList = new ArrayList<>();
         this.name = name;
-        this.tresorsRamases= 0;
+        this.tresorsRamases = 0;
     }
 
     private Aventurier(Point point, Direction direction, String name, int tresorsRamases) {
         super(point, "A");
         this.direction = direction;
         this.name = name;
-        this.tresorsRamases= tresorsRamases;
+        this.tresorsRamases = tresorsRamases;
+        this.instructionList = new ArrayList<>();
     }
+
 
     public Aventurier avance() {
         return new Aventurier(calculeNvPoint(), this.direction, name, tresorsRamases);
@@ -31,6 +40,12 @@ public class Aventurier extends Plaine {
 
     public Aventurier tourneGauche() {
         return new Aventurier(this.getPoint(), calculeNvDirectionGauche(), name, tresorsRamases);
+    }
+
+    public void instructions(String instructions) {
+        this.instructionList.addAll(Arrays.asList(instructions.split("")).stream()
+                .map(instruction -> Instruction.valueOfString(instruction))
+                .collect(Collectors.toList()));
     }
 
     private Point calculeNvPoint() {
@@ -78,24 +93,12 @@ public class Aventurier extends Plaine {
         }
     }
 
-    private void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-
-    private void setName(String name) {
-        this.name = name;
-    }
-
     public Aventurier incrementTresor() {
         return new Aventurier(this.getPoint(), direction, name, tresorsRamases + 1);
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public String getName() {
-        return name;
+    public List<Instruction> getInstructionList() {
+        return instructionList;
     }
 
     @Override
@@ -105,8 +108,8 @@ public class Aventurier extends Plaine {
         if (!super.equals(o)) return false;
         Aventurier that = (Aventurier) o;
         return tresorsRamases == that.tresorsRamases &&
-               direction == that.direction &&
-               name.equals(that.name);
+                direction == that.direction &&
+                name.equals(that.name);
     }
 
     @Override
@@ -116,10 +119,7 @@ public class Aventurier extends Plaine {
 
     @Override
     public String toString() {
-        return "Aventurier{" +
-               "direction=" + direction +
-               ", name='" + name + '\'' +
-               ", tresorsRamases=" + tresorsRamases +
-               "} " + super.toString();
+        return "\n" + this.getTag() + " - " + this.name + " - " + this.getPoint().getX() + " - " + this.getPoint().getY() + " - "
+                + this.direction.getItem() + " - " + this.tresorsRamases;
     }
 }
