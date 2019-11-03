@@ -3,6 +3,7 @@ package com.homework.chassetresore.service;
 import com.homework.chassetresore.Constantes;
 import com.homework.chassetresore.domaine.*;
 import com.homework.chassetresore.exception.*;
+import lombok.Data;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -13,16 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Data
 public class FileService {
 
     private Path Pathfichier;
 
     public FileService(String filePath) {
         this.Pathfichier = Paths.get(filePath);
-    }
-
-    public Path getFilePath() {
-        return Pathfichier;
     }
 
     public Carte construireCarteDepuisFichier(Path pathFichier) throws Exception {
@@ -132,7 +130,7 @@ public class FileService {
 
         Direction direction = Direction.valueOfString(array[4]);
         Aventurier aventurier= new Aventurier(new Point(x, y), direction, name);
-        aventurier.instructions(array[5]);
+        aventurier.aventurierInstructions(array[5]);
         if (carte.orBordure(aventurier, carte.getBordureTop(), carte.bordureButtom)){
             throw new AventurierOrBordureException(String.format(ExceptionEnum.ERROR_FILE_09.getMessage(), name));
         }

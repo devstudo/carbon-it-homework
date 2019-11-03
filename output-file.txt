@@ -1,0 +1,8 @@
+C - 3 - 4
+M - 1 - 0
+M - 2 - 1
+# {T comme Trésor} - {Axe horizontal} - {Axe vertical} - {Nb. de trésors restants}
+T - 1 - 3 - 1
+# {A comme Aventurier} - {Nom de l’aventurier} - {Axe horizontal} - {Axe vertical} - {Orientation} - {Nb. trésors ramassés}
+A - Lara - 0 - 2 - N - 2
+A - Simo - 0 - 3 - O - 2

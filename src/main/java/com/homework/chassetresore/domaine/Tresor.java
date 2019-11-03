@@ -1,7 +1,8 @@
 package com.homework.chassetresore.domaine;
 
-import java.util.Objects;
+import lombok.Data;
 
+@Data
 public class Tresor extends Plaine {
     private int nbrDeTresors;
 
@@ -13,24 +14,6 @@ public class Tresor extends Plaine {
     public Tresor decrement() {
         this.nbrDeTresors--;
         return this;
-    }
-
-    public int getNbrDeTresors() {
-        return nbrDeTresors;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Tresor)) return false;
-        if (!super.equals(o)) return false;
-        Tresor tresor = (Tresor) o;
-        return nbrDeTresors == tresor.nbrDeTresors;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), nbrDeTresors);
     }
 
     @Override

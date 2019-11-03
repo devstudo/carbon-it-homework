@@ -3,7 +3,6 @@ package com.homework.chassetresore.domaine;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
@@ -22,41 +21,6 @@ public class Carte {
         this.tresors = tresors;
         this.montagnes = montagnes;
         this.aventuriers= aventuriers;
-    }
-
-    public Point getBordureTop() {
-        return bordureTop;
-    }
-
-    public List<Tresor> getTresors() {
-        return tresors;
-    }
-
-    public List<Montagne> getMontagnes() {
-        return montagnes;
-    }
-
-    public List<Aventurier> getAventuriers() {
-        return aventuriers;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Carte)) return false;
-        Carte carte = (Carte) o;
-        return bordureTop.equals(carte.bordureTop) &&
-               tresors.equals(carte.tresors) &&
-               montagnes.equals(carte.montagnes);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(bordureTop, tresors, montagnes);
     }
 
     @Override

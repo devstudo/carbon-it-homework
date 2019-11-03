@@ -1,11 +1,13 @@
 package com.homework.chassetresore.domaine;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Data
 public class Aventurier extends Plaine {
     private Direction direction;
     private final List<Instruction> instructionList;
@@ -42,7 +44,7 @@ public class Aventurier extends Plaine {
         return new Aventurier(this.getPoint(), calculeNvDirectionGauche(), name, tresorsRamases);
     }
 
-    public void instructions(String instructions) {
+    public void aventurierInstructions(String instructions) {
         this.instructionList.addAll(Arrays.asList(instructions.split("")).stream()
                 .map(instruction -> Instruction.valueOfString(instruction))
                 .collect(Collectors.toList()));
@@ -95,26 +97,6 @@ public class Aventurier extends Plaine {
 
     public Aventurier incrementTresor() {
         return new Aventurier(this.getPoint(), direction, name, tresorsRamases + 1);
-    }
-
-    public List<Instruction> getInstructionList() {
-        return instructionList;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Aventurier)) return false;
-        if (!super.equals(o)) return false;
-        Aventurier that = (Aventurier) o;
-        return tresorsRamases == that.tresorsRamases &&
-                direction == that.direction &&
-                name.equals(that.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), direction, name, tresorsRamases);
     }
 
     @Override

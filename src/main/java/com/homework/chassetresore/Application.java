@@ -3,22 +3,21 @@ package com.homework.chassetresore;
 import com.homework.chassetresore.domaine.*;
 import com.homework.chassetresore.service.AventurierService;
 import com.homework.chassetresore.service.FileService;
+import lombok.Data;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
-
+@Data
 public class Application {
 
     public static void main(String[] args) {
 
-        FileService fileService = new FileService("/Users/simob/Documents/carbon-it-homwork/src/main/resources/source.txt");
+        FileService fileService = new FileService(Constantes.INPUT_FILE_PATH);
         try {
-            Carte carte = fileService.construireCarteDepuisFichier(fileService.getFilePath());
+            Carte carte = fileService.construireCarteDepuisFichier(fileService.getPathfichier());
             List<Aventurier> aventuriersFinal = new ArrayList<>();
             carte.getAventuriers().stream().forEach(aventurier -> {
                 AventurierService aventurierService= new AventurierService(carte);
@@ -26,7 +25,7 @@ public class Application {
             });
             carte.getAventuriers().clear();
             aventuriersFinal.stream().forEach(aventurier -> carte.getAventuriers().add(aventurier));
-            fileService.writeOutputFile (carte.toString(), new File("/Users/simob/Documents/carbon-it-homwork/src/main/resources/out.txt"));
+            fileService.writeOutputFile (carte.toString(), new File(Constantes.OUTPUT_FILE_PATH));
             System.out.println(carte.toString());
 
         } catch (Exception e) {

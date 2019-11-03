@@ -8,7 +8,7 @@ public enum ExceptionEnum {
     ERROR_FILE_05("ERROR_FILE_05","Format d'une ligne d'AVENTURIER est non conforme !"),
     ERROR_FILE_06("ERROR_FILE_06","Direction de la ligne d'AVENTURIER est non conforme => chousir dans {'N', 'E', 'S', 'O'}"),
     ERROR_FILE_07("ERROR_FILE_07","ISTRUCTION de la ligne d'AVENTURIER est non conforme => chousir dans {'A', 'G', 'D'}"),
-    ERROR_FILE_08("ERROR_FILE_08","ITEM de CARTE non conforme => chousir dans {'A', 'T', 'M'}"),
+    ERROR_FILE_08("ERROR_FILE_08","ITEM de CARTE non conforme => choisir dans {'A', 'T', 'M'}"),
     ERROR_FILE_09("ERROR_FILE_08","Aventurier {%s} est or bordures de la CARTE");
 
 

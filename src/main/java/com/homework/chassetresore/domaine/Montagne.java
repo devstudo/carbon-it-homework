@@ -1,5 +1,8 @@
 package com.homework.chassetresore.domaine;
 
+import lombok.Data;
+
+@Data
 public class Montagne extends Plaine {
 
     public Montagne(Point point) {
