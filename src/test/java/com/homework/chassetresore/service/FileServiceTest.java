@@ -7,18 +7,11 @@ import com.homework.chassetresore.domaine.Point;
 import com.homework.chassetresore.exception.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 import static org.junit.Assert.assertTrue;
 
 public class FileServiceTest {
     private FileService fileService;
-    @Mock
-    private BufferedWriter bufferedWriterMock;
 
     @Before
     public void before() {
@@ -26,11 +19,10 @@ public class FileServiceTest {
 
     }
 
-
     @Test
     public void test_construireCarteDepuisFichier_OK() throws Exception {
 
-        String carteResult= "C - 3 - 4\n" +
+        String carteResult = "C - 3 - 4\n" +
                 "M - 1 - 0\n" +
                 "M - 2 - 1\n" +
                 "# {T comme Trésor} - {Axe horizontal} - {Axe vertical} - {Nb. de trésors restants}\n" +
@@ -54,7 +46,7 @@ public class FileServiceTest {
     @Test(expected = TresorNonConformeException.class)
     public void test_instantiateTresor_KO() throws TresorNonConformeException {
 
-        fileService.intantierTresor("T - 2");
+        fileService.instantierTresor("T - 2");
     }
 
     @Test(expected = MontagneNonConformeException.class)
@@ -63,17 +55,17 @@ public class FileServiceTest {
     }
 
     @Test(expected = AventurierNonConformeException.class)
-    public void test_instantiateAventurier_KO() throws AventurierNonConformeException, AventurierOrBordureException {
+    public void test_instantiateAventurier_KO() throws Exception {
         Point bordure = new Point(3, 4);
         Carte carte = new Carte(bordure, null, null, null);
-        fileService.intantierAventurier("A - 2", carte);
+        fileService.instantierAventurier("A - 2", carte);
     }
 
     @Test(expected = AventurierOrBordureException.class)
-    public void test_instantiateAventurier_KO1() throws AventurierNonConformeException, AventurierOrBordureException {
+    public void test_instantiateAventurier_KO1() throws Exception {
         Point bordure = new Point(3, 4);
         Carte carte = new Carte(bordure, null, null, null);
-        fileService.intantierAventurier("A-Simo-0-5-E-GAGAGAGADDA", carte);
+        fileService.instantierAventurier("A-Simo-0-5-E-GAGAGAGADDA", carte);
     }
 
 

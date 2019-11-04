@@ -1,8 +1,8 @@
 package com.homework.chassetresore.exception;
 
-public class TresorNonConformeException extends GenericException {
+public class TresorNonConformeException extends Exception {
 
     public TresorNonConformeException() {
-        super(ExceptionEnum.ERROR_FILE_04.getCode(), ExceptionEnum.ERROR_FILE_04.getMessage());
+        super(ExceptionEnum.ERROR_FILE_04.toString());
     }
 }

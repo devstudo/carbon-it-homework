@@ -1,8 +1,8 @@
 package com.homework.chassetresore.exception;
 
-public class CarteNonConformeException extends GenericException {
+public class CarteNonConformeException extends Exception {
 
     public CarteNonConformeException() {
-        super(ExceptionEnum.ERROR_FILE_01.getCode(), ExceptionEnum.ERROR_FILE_01.getMessage());
+        super(String.join(ExceptionEnum.ERROR_FILE_01.getCode(), ExceptionEnum.ERROR_FILE_01.getMessage()));
     }
 }

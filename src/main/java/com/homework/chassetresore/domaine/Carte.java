@@ -1,6 +1,7 @@
 package com.homework.chassetresore.domaine;
 
 
+import com.homework.chassetresore.Constantes;
 import lombok.Data;
 
 import java.util.List;
@@ -28,9 +29,9 @@ public class Carte {
     public String toString() {
         return this.getTag() + " - " + bordureTop.getX() + " - " + bordureTop.getY()
                 + this.montagnes.stream().map(montagne -> montagne.toString()).collect(Collectors.joining())
-                + this.writeTresorsComent(this, "\n# {T comme Trésor} - {Axe horizontal} - {Axe vertical} - {Nb. de trésors restants}" )
+                + this.writeTresorsComent(this, Constantes.TRESORS_COMMENTS )
                 + this.tresors.stream().map(montagne -> montagne.toString()).collect(Collectors.joining())
-                + this.writeAventuriersComent(this, "\n# {A comme Aventurier} - {Nom de l’aventurier} - {Axe horizontal} - {Axe vertical} - {Orientation} - {Nb. trésors ramassés}")
+                + this.writeAventuriersComent(this, Constantes.AVENTURIERS_COMMENT)
                 + this.aventuriers.stream().map(montagne -> montagne.toString()).collect(Collectors.joining());
 
 

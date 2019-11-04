@@ -83,6 +83,4 @@ public class AventurierService {
             return Optional.of(aventurierAvancee);
         }
     }
-
-
 }

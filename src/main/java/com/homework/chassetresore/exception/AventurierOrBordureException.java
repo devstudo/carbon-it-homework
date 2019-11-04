@@ -1,8 +1,8 @@
 package com.homework.chassetresore.exception;
 
-public class AventurierOrBordureException extends GenericException {
+public class AventurierOrBordureException extends Exception {
 
     public AventurierOrBordureException(String message) {
-        super(ExceptionEnum.ERROR_FILE_09.getCode(), message);
+        super(String.join(ExceptionEnum.ERROR_FILE_09.getCode(), message));
     }
 }

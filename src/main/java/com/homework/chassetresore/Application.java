@@ -1,16 +1,11 @@
 package com.homework.chassetresore;
 
-import com.homework.chassetresore.domaine.*;
-import com.homework.chassetresore.exception.GenericException;
+import com.homework.chassetresore.domaine.Carte;
 import com.homework.chassetresore.service.AventurierService;
 import com.homework.chassetresore.service.FileService;
 import lombok.Data;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -35,11 +30,11 @@ public class Application {
                     map(aventurier -> aventurierService.appliquerInstructions(aventurier)).collect(Collectors.toList()));
 
             /*écriture de la carte dans le fichier de sortie*/
-            File out= new File(filePath.substring(0,filePath.lastIndexOf("/"))+ "/output-fichier");
+            File out= new File(filePath.substring(0,filePath.lastIndexOf("/")+1)+ Constantes.OUTPUT_FILE_NAME);
             fileService.writeOutputFile(carte.toString(), out);
             out.createNewFile();
-            System.out.println(carte.toString());
-        } catch (IOException | GenericException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

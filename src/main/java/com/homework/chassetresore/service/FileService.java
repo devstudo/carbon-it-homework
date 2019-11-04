@@ -23,7 +23,7 @@ public class FileService {
         this.Pathfichier = Paths.get(filePath);
     }
 
-    public Carte construireCarteDepuisFichier(Path pathFichier) throws IOException, GenericException {
+    public Carte construireCarteDepuisFichier(Path pathFichier) throws Exception {
         List<String> lignesFichier = Files.readAllLines(pathFichier, StandardCharsets.UTF_8);
         Carte carte = getCardFromFile(lignesFichier);
         positionnerElementsSurCarte(lignesFichier, carte);
@@ -61,14 +61,14 @@ public class FileService {
                                 carte.getMontagnes().add(instantierMontagne(line));
                                 break;
                             case TRESORE:
-                                carte.getTresors().add(intantierTresor(line));
+                                carte.getTresors().add(instantierTresor(line));
                                 break;
                             case AVENTURIER:
-                                carte.getAventuriers().add(intantierAventurier(line, carte));
+                                carte.getAventuriers().add(instantierAventurier(line, carte));
                                 break;
                             default:
                         }
-                    } catch (GenericException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 });
@@ -79,13 +79,18 @@ public class FileService {
      * @param myfile
      * @throws IOException
      */
-    public void  writeOutputFile (String result, File myfile) throws IOException {
+    public void writeOutputFile(String result, File myfile) throws IOException {
         final Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(myfile), StandardCharsets.UTF_8));
         out.append(result);
         out.flush();
         out.close();
     }
 
+    /**
+     * @param line
+     * @return
+     * @throws CarteNonConformeException
+     */
     public Carte instantierCarte(String line) throws CarteNonConformeException {
         if (!line.matches(Constantes.CARTE_REGEX)) {
             throw new CarteNonConformeException();
@@ -96,6 +101,11 @@ public class FileService {
         return new Carte(new Point(hauteur, largeur), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
+    /**
+     * @param line
+     * @return
+     * @throws MontagneNonConformeException
+     */
     public Montagne instantierMontagne(String line) throws MontagneNonConformeException {
         if (!line.matches(Constantes.MONTAGNE_REGEX)) {
             throw new MontagneNonConformeException();
@@ -107,7 +117,12 @@ public class FileService {
     }
 
 
-    public Tresor intantierTresor(String line) throws TresorNonConformeException {
+    /**
+     * @param line
+     * @return
+     * @throws TresorNonConformeException
+     */
+    public Tresor instantierTresor(String line) throws TresorNonConformeException {
         if (!line.matches(Constantes.TRESORE_REGEX)) {
             throw new TresorNonConformeException();
         }
@@ -118,7 +133,14 @@ public class FileService {
         return new Tresor(new Point(x, y), nbrDeTresor);
     }
 
-    public Aventurier intantierAventurier(String line, Carte carte) throws AventurierNonConformeException, AventurierOrBordureException {
+    /**
+     * @param line
+     * @param carte
+     * @return
+     * @throws AventurierNonConformeException
+     * @throws AventurierOrBordureException
+     */
+    public Aventurier instantierAventurier(String line, Carte carte) throws Exception {
         if (!line.matches(Constantes.AVENTURIER_REGEX)) {
             throw new AventurierNonConformeException();
         }
@@ -128,9 +150,9 @@ public class FileService {
         int y = Integer.parseInt(array[3]);
 
         Direction direction = Direction.valueOfString(array[4]);
-        Aventurier aventurier= new Aventurier(new Point(x, y), direction, name);
+        Aventurier aventurier = new Aventurier(new Point(x, y), direction, name);
         aventurier.aventurierInstructions(array[5]);
-        if (carte.orBordure(aventurier, carte.getBordureTop(), carte.bordureButtom)){
+        if (carte.orBordure(aventurier, carte.getBordureTop(), carte.bordureButtom)) {
             throw new AventurierOrBordureException(String.format(ExceptionEnum.ERROR_FILE_09.getMessage(), name));
         }
         return aventurier;

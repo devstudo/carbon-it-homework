@@ -10,12 +10,12 @@ import java.util.Arrays;
 import static org.junit.Assert.assertTrue;
 
 public class AventurierServiceTest {
-    private  AventurierService aventurierService;
-    private    Carte carte;
-    private  Point bordure;
-    private  Aventurier aventurier;
-    private  Montagne montagne1, montagne2;
-    private  Tresor tresor, tresor1, tresor2;
+    private AventurierService aventurierService;
+    private Carte carte;
+    private Point bordure;
+    private Aventurier aventurier;
+    private Montagne montagne1, montagne2;
+    private Tresor tresor, tresor1, tresor2;
 
     @Before
     public void before() {
@@ -34,7 +34,7 @@ public class AventurierServiceTest {
     @Test
     public void test_appliquerInstructionOK() {
         aventurier.aventurierInstructions("AADADAG");
-        Aventurier aventurierFinal= aventurierService.appliquerInstructions(aventurier);
+        Aventurier aventurierFinal = aventurierService.appliquerInstructions(aventurier);
         assertTrue(aventurierFinal.toString().equals("\nA - Laura - 0 - 2 - O - 2"));
 
     }
@@ -48,7 +48,7 @@ public class AventurierServiceTest {
 
     @Test()
     public void test_appliquerInstructionKO3() {
-        aventurier= new Aventurier(new Point(2, 0), Direction.NORTH, "Laura");
+        aventurier = new Aventurier(new Point(2, 0), Direction.NORTH, "Laura");
         aventurier.aventurierInstructions("A");
         aventurierService.appliquerInstructions(aventurier);
         assertTrue(aventurier.equals(aventurierService.appliquerInstructions(aventurier)));
@@ -57,7 +57,7 @@ public class AventurierServiceTest {
 
     @Test()
     public void test_appliquerInstructionKO4() {
-        aventurier= new Aventurier(new Point(2, 2), Direction.NORTH, "Laura");
+        aventurier = new Aventurier(new Point(2, 2), Direction.NORTH, "Laura");
         aventurier.aventurierInstructions("A");
         aventurierService.appliquerInstructions(aventurier);
         assertTrue(aventurier.equals(aventurierService.appliquerInstructions(aventurier)));
@@ -66,13 +66,12 @@ public class AventurierServiceTest {
 
     @Test(expected = UnsupportedOperationException.class)
     public void test_appliquerInstructionKO5() {
-        aventurier= new Aventurier(new Point(3, 2), Direction.SUD, "simo");
+        aventurier = new Aventurier(new Point(3, 2), Direction.SUD, "simo");
         aventurier.aventurierInstructions("A");
         aventurierService.appliquerInstructions(aventurier);
         //assertTrue(aventurier.equals(aventurierService.appliquerInstructions(aventurier)));
 
     }
-
 
 
 }

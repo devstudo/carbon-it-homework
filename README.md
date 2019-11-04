@@ -29,5 +29,12 @@ and then enter the input file when asked on the console
  > mvn test
 ``````
 
+>3- Result file:
+
+the output file will be generated at the same INPUT PATH with the name:
+
+```
+"resultat-chasse-aux-tresores"
+```
 
 
