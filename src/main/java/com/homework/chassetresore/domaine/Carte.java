@@ -51,9 +51,9 @@ public class Carte {
      * @param bottom
      * @return
      */
-    public boolean orBordure(Aventurier aventurier, Point top, Point bottom) {
-        return aventurier.getPoint().getY() > top.getY()
-                || aventurier.getPoint().getX() > top.getX()
+    public boolean horsBordure(Aventurier aventurier, Point top, Point bottom) {
+        return aventurier.getPoint().getY() > top.getY() - 1
+                || aventurier.getPoint().getX() > top.getX() - 1
                 || aventurier.getPoint().getX() < bottom.getX()
                 || aventurier.getPoint().getY() < bottom.getY();
     }

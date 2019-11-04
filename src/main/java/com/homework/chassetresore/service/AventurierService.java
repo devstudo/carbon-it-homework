@@ -77,7 +77,7 @@ public class AventurierService {
 
         if (points.contains(aventurierAvancee.getPoint())) {
             return Optional.empty();
-        } else if (carte.orBordure(aventurierAvancee, carte.getBordureTop(), Carte.bordureButtom)) {
+        } else if (carte.horsBordure(aventurierAvancee, carte.getBordureTop(), Carte.bordureButtom)) {
             return Optional.empty();
         } else {
             return Optional.of(aventurierAvancee);

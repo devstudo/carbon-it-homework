@@ -1,9 +1,8 @@
 /Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/domaine/Aventurier.java
 /Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/exception/InstructionNonConformeException.java
 /Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/exception/MontagneNonConformeException.java
-/Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/exception/GenericException.java
 /Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/exception/ExceptionEnum.java
-/Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/exception/AventurierOrBordureException.java
+/Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/exception/AventurierHorsBordureException.java
 /Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/exception/AventurierNonConformeException.java
 /Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/exception/ItemdeCarteNonConformeException.java
 /Users/simob/Documents/carbon-it-homework/src/main/java/com/homework/chassetresore/exception/TresorNonConformeException.java

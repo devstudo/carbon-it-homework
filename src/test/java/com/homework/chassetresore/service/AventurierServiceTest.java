@@ -64,14 +64,4 @@ public class AventurierServiceTest {
 
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void test_appliquerInstructionKO5() {
-        aventurier = new Aventurier(new Point(3, 2), Direction.SUD, "simo");
-        aventurier.aventurierInstructions("A");
-        aventurierService.appliquerInstructions(aventurier);
-        //assertTrue(aventurier.equals(aventurierService.appliquerInstructions(aventurier)));
-
-    }
-
-
 }

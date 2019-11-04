@@ -23,8 +23,16 @@ public class FileService {
         this.Pathfichier = Paths.get(filePath);
     }
 
+    public FileService(){
+
+    }
+
     public Carte construireCarteDepuisFichier(Path pathFichier) throws Exception {
         List<String> lignesFichier = Files.readAllLines(pathFichier, StandardCharsets.UTF_8);
+        return lireLigneFichier(lignesFichier);
+    }
+
+    public Carte lireLigneFichier(List<String> lignesFichier) throws Exception {
         Carte carte = getCardFromFile(lignesFichier);
         positionnerElementsSurCarte(lignesFichier, carte);
         return carte;
@@ -36,11 +44,11 @@ public class FileService {
      * @throws Exception
      */
     public Carte getCardFromFile(List<String> lines) throws MultiplesCartesException, CarteNonConformeException {
-        long count = lines.stream().filter(line -> line.startsWith("C")).count();
+        long count = lines.stream().filter(line -> line.startsWith(Constantes.CARTE_TAG)).count();
         if (count == 0 || count > 1) {
             throw new MultiplesCartesException();
         }
-        String carteLine = lines.stream().filter(line -> line.startsWith("C"))
+        String carteLine = lines.stream().filter(line -> line.startsWith(Constantes.CARTE_TAG))
                 .map(line -> line.replaceAll(" ", "")).collect(Collectors.joining());
         return instantierCarte(carteLine);
     }
@@ -51,7 +59,7 @@ public class FileService {
      */
     public void positionnerElementsSurCarte(List<String> lines, Carte carte) {
 
-        lines.stream().filter(line -> !line.startsWith("#") && !line.equals("") && !line.startsWith("C"))
+        lines.stream().filter(line -> !line.startsWith("#") && !line.equals("") && !line.startsWith(Constantes.CARTE_TAG))
                 .map(line -> line.replaceAll(" ", ""))
                 .forEach(line -> {
                     try {
@@ -138,7 +146,7 @@ public class FileService {
      * @param carte
      * @return
      * @throws AventurierNonConformeException
-     * @throws AventurierOrBordureException
+     * @throws AventurierHorsBordureException
      */
     public Aventurier instantierAventurier(String line, Carte carte) throws Exception {
         if (!line.matches(Constantes.AVENTURIER_REGEX)) {
@@ -152,8 +160,8 @@ public class FileService {
         Direction direction = Direction.valueOfString(array[4]);
         Aventurier aventurier = new Aventurier(new Point(x, y), direction, name);
         aventurier.aventurierInstructions(array[5]);
-        if (carte.orBordure(aventurier, carte.getBordureTop(), carte.bordureButtom)) {
-            throw new AventurierOrBordureException(String.format(ExceptionEnum.ERROR_FILE_09.getMessage(), name));
+        if (carte.horsBordure(aventurier, carte.getBordureTop(), carte.bordureButtom)) {
+            throw new AventurierHorsBordureException(String.format(ExceptionEnum.ERROR_FILE_09.getMessage(), name));
         }
         return aventurier;
     }
