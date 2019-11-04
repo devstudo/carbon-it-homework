@@ -10,7 +10,6 @@ public class Constantes {
 
     /*paths fichiers*/
     public static final String CONSOLE_MESSAGE = "Entrez le path du fichier: ";
-    public static final String INPUT_FILE_PATH = "/Users/simob/Documents/carbon-it-homework/src/main/resources/input-file.txt";
     public static final String OUTPUT_FILE_NAME = "resultat-chasse-aux-tresores";
 
     /*Tags*/
