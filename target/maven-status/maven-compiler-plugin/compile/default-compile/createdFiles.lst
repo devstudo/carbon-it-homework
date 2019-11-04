@@ -12,13 +12,13 @@ com/homework/chassetresore/exception/AventurierOrBordureException.class
 com/homework/chassetresore/Application.class
 com/homework/chassetresore/domaine/Aventurier.class
 com/homework/chassetresore/service/AventurierService.class
+com/homework/chassetresore/exception/MontagneNonConformeException.class
 com/homework/chassetresore/exception/CarteNonConformeException.class
 com/homework/chassetresore/exception/ItemdeCarteNonConformeException.class
 com/homework/chassetresore/Constantes.class
 com/homework/chassetresore/exception/MultiplesCartesException.class
 com/homework/chassetresore/domaine/Point.class
 com/homework/chassetresore/exception/TresorNonConformeException.class
-com/homework/chassetresore/exception/MotagneNonConformeException.class
 com/homework/chassetresore/service/AventurierService$1.class
 com/homework/chassetresore/exception/GenericException.class
 com/homework/chassetresore/domaine/Plaine.class

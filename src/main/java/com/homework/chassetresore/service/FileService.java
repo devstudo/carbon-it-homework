@@ -23,7 +23,7 @@ public class FileService {
         this.Pathfichier = Paths.get(filePath);
     }
 
-    public Carte construireCarteDepuisFichier(Path pathFichier) throws Exception {
+    public Carte construireCarteDepuisFichier(Path pathFichier) throws IOException, GenericException {
         List<String> lignesFichier = Files.readAllLines(pathFichier, StandardCharsets.UTF_8);
         Carte carte = getCardFromFile(lignesFichier);
         positionnerElementsSurCarte(lignesFichier, carte);
@@ -35,8 +35,7 @@ public class FileService {
      * @return
      * @throws Exception
      */
-    public Carte getCardFromFile(List<String> lines) throws Exception {
-
+    public Carte getCardFromFile(List<String> lines) throws MultiplesCartesException, CarteNonConformeException {
         long count = lines.stream().filter(line -> line.startsWith("C")).count();
         if (count == 0 || count > 1) {
             throw new MultiplesCartesException();
@@ -69,7 +68,7 @@ public class FileService {
                                 break;
                             default:
                         }
-                    } catch (Exception e) {
+                    } catch (GenericException e) {
                         e.printStackTrace();
                     }
                 });
@@ -80,14 +79,14 @@ public class FileService {
      * @param myfile
      * @throws IOException
      */
-    public static  void  writeOutputFile (String result, File myfile) throws IOException {
+    public void  writeOutputFile (String result, File myfile) throws IOException {
         final Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(myfile), StandardCharsets.UTF_8));
         out.append(result);
         out.flush();
         out.close();
     }
 
-    public Carte instantierCarte(String line) throws Exception {
+    public Carte instantierCarte(String line) throws CarteNonConformeException {
         if (!line.matches(Constantes.CARTE_REGEX)) {
             throw new CarteNonConformeException();
         }
@@ -97,9 +96,9 @@ public class FileService {
         return new Carte(new Point(hauteur, largeur), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
-    public Montagne instantierMontagne(String line) throws Exception {
+    public Montagne instantierMontagne(String line) throws MontagneNonConformeException {
         if (!line.matches(Constantes.MONTAGNE_REGEX)) {
-            throw new MotagneNonConformeException();
+            throw new MontagneNonConformeException();
         }
         String[] array = line.split("-");
         int x = Integer.parseInt(array[1]);
@@ -108,7 +107,7 @@ public class FileService {
     }
 
 
-    public Tresor intantierTresor(String line) throws Exception {
+    public Tresor intantierTresor(String line) throws TresorNonConformeException {
         if (!line.matches(Constantes.TRESORE_REGEX)) {
             throw new TresorNonConformeException();
         }
@@ -119,7 +118,7 @@ public class FileService {
         return new Tresor(new Point(x, y), nbrDeTresor);
     }
 
-    public Aventurier intantierAventurier(String line, Carte carte) throws Exception {
+    public Aventurier intantierAventurier(String line, Carte carte) throws AventurierNonConformeException, AventurierOrBordureException {
         if (!line.matches(Constantes.AVENTURIER_REGEX)) {
             throw new AventurierNonConformeException();
         }
