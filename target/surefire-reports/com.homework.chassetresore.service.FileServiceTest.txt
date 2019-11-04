@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.homework.chassetresore.service.FileServiceTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.122 sec <<< FAILURE! - in com.homework.chassetresore.service.FileServiceTest
-test_construireCarteDepuisFichier_OK(com.homework.chassetresore.service.FileServiceTest)  Time elapsed: 0.022 sec  <<< FAILURE!
-java.lang.AssertionError
-	at com.homework.chassetresore.service.FileServiceTest.test_construireCarteDepuisFichier_OK(FileServiceTest.java:36)
-
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.102 sec - in com.homework.chassetresore.service.FileServiceTest
