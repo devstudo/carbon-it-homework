@@ -5,11 +5,19 @@ The project use maven for project build, and tested with Junit 4
 
 Java 1.8 is required
 
->1- to run the aplication:
+>1- to get the repository source code
+
+````
+  >`git clone https://github.com/devstudo/carbon-it-homework.git
+````
+
+OR download .zip 
+
+>2- to run the aplication:
 
  
 ````
-  >`mvn exec:java
+  > mvn exec:java
 ````
 
 or get the jar file from your local repository at 
@@ -23,13 +31,13 @@ after executing ```mvn clean install```:
 and then enter the input file when asked on the console
 
 
->2- to run tests:
+>3- to run tests:
 
 ``````
  > mvn test
 ``````
 
->3- Result file:
+>4- Result file:
 
 the output file will be generated at the same INPUT PATH with the name:
 
