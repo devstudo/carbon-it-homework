@@ -1,4 +1,4 @@
-# Chasse au trésores project
+# Chasse au trésores
 
 
 The project use maven for project build, and tested with Junit 4
